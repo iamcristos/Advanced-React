@@ -1,0 +1,7 @@
+type Mutation{
+   hi: "hello" 
+}
+
+type Query{
+   hi: "hello" 
+}
