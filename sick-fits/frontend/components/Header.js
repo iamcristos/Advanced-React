@@ -10,7 +10,6 @@ Router.onRouteChangeStart= ()=>{
 };
 
 Router.onRouteChangeComplete= ()=>{
-    console.log('complete')
     NProgres.done();
 };
 

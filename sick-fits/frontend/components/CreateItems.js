@@ -18,7 +18,7 @@ const CREAT_ITEM_MUTATION = gql`
       title: $title
       price: $price
       image: $image
-      largeImage: $largeImage
+      imageLarge: $largeImage
       description: $description
       ) {
           id
@@ -85,6 +85,7 @@ export default class componentName extends Component {
                         onChange={this.onchangeHandler}
                         required/>
                 </label>
+                <button>Submit</button>
             </fieldset>
         </Form>
         )}</Mutation>
