@@ -1,9 +1,10 @@
-import Link from 'next/link';
+import Items from '../components/Items';
 
 export default function Home(props) {
+    // console.log(typeof props.query.page)
     return (
         <div>
-            <h1>Home</h1>
+            <Items page={Number(props.query.page || 1)}/>
         </div>
     )
 }

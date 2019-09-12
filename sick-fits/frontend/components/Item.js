@@ -5,6 +5,7 @@ import ItemStyles from './styles/ItemStyles';
 import Title from './styles/Title';
 import PriceTag from './styles/PriceTag';
 import formatMoney from '../lib/formatMoney';
+import DeleteItem from './DeleteItem';
 class Item extends Component {
     static propTypes = {
         items : propTypes.object.isRequired
@@ -33,7 +34,7 @@ class Item extends Component {
                             }
                             ><a>Edit :pencil</a></Link>
                             <button>Add to cart</button>
-                            <button>Delete</button>
+                            <DeleteItem id={items.id}>Delete</DeleteItem>
                         </div>
                 </ItemStyles>
             </div>

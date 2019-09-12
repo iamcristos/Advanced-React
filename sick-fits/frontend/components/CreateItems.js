@@ -39,6 +39,19 @@ export default class componentName extends Component {
       const val = type === 'number' ? parseFloat(value) : value;
       this.setState({[name]: val});
   }
+
+  uploadImage = async (e) =>{
+    const {files} = e.target
+    const form = new FormData();
+    form.append('file', files[0])
+    form.append('upload_preset', 'sickfits');
+    const res = await fetch('https://api.cloudinary.com/v1_1/cristos/image/upload',{
+      method: 'POST',
+      body: form
+    })
+    const data = await res.json()
+    this.setState({image:data.secure_url, largeImage:data.eager[0].secure_url})
+  }
   render() {
     return (
       <div>
@@ -55,13 +68,24 @@ export default class componentName extends Component {
             <h2>Title</h2>
             <Error error={error}/>
             <fieldset disabled={loading} aria-busy={loading}>
+              <label htmlFor="title">
+                      Image
+                      <input type="file" 
+                          id="file" 
+                          name="file"
+                          placeholder="file" 
+                          // value={this.state.title}
+                          onChange={this.uploadImage}
+                          required/>
+                  </label>
+                  {this.state.image && <img src={this.state.image} alt="Image type" width="200px"/>}
                 <label htmlFor="title">
                     Title
                     <input type="text" 
                         id="title" 
                         name="title"
                         placeholder="Title" 
-                        state={this.state.title}
+                        value={this.state.title}
                         onChange={this.onchangeHandler}
                         required/>
                 </label>
@@ -71,7 +95,7 @@ export default class componentName extends Component {
                         id="description" 
                         name="description"
                         placeholder="Enter your Description" 
-                        state={this.state.description}
+                        value={this.state.description}
                         onChange={this.onchangeHandler}
                         required/>
                 </label>
@@ -81,7 +105,7 @@ export default class componentName extends Component {
                         id="price" 
                         name="price"
                         placeholder="Price" 
-                        state={this.state.price}
+                        value={this.state.price}
                         onChange={this.onchangeHandler}
                         required/>
                 </label>
