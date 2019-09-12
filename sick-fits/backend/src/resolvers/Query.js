@@ -9,7 +9,9 @@ const Query = {
     //     const item = await context.db.query.items();
     //     return item
     // }
-    items: forwardTo('db')
+    items: forwardTo('db'),
+    item: forwardTo('db'),
+    itemsConnection:forwardTo('db')
 };
 
 module.exports = Query;

@@ -12,6 +12,23 @@ const Mutations = {
             data:{...args}
         }, info);
         return item;
+    },
+    updateItem(parent, args, context, info) {
+        const update = {...args}
+        delete update.id;
+        return context.db.mutation.updateItem({
+            data: update,
+            where: {id:args.id}
+        }, info)
+    },
+    async deleteItem(parent, args, context, info) {
+        const where = {id: args.id};
+        // find the item
+        const item = await context.db.query.item({where},`{id title}`)
+        // check if user has permission to delete the item
+        // TODO
+        // delete the item
+        return context.db.mutation.deleteItem({where}, info);
     }
 };
 
